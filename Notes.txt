@@ -6,3 +6,12 @@ Add break to the default case - > best practice
 
 /// for (; ; ) -> infinite loop
 no test = true, could be broken by return / break
+
+/// ctype
+verify the type, return 1 if is true. exemple isspace, isdegit.
+
+/// strtol
+convert string to long integer
+
+/// comma ,
+could be used for the exchange of elements
