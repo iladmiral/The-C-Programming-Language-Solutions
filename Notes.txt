@@ -1,0 +1,8 @@
+/// EOF
+Ctrl + z than Enter
+
+/// break after default case
+Add break to the default case - > best practice
+
+/// for (; ; ) -> infinite loop
+no test = true, could be broken by return / break
