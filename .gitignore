@@ -1,6 +1,7 @@
 # Compiled source #
 ###################
 KnR-The-C-Programming-Language-Solutions
+.vscode
 *.pdf
 *.com
 *.class
