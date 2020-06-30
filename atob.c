@@ -8,10 +8,10 @@ void reverse(char s[]);
 int main(void) 
 {
     int n = -2000;
-    int b = 16; /* the base of conversion */
+    int b = 50; /* the base of conversion */
     int size = sizeof(n) / sizeof(int);
     char s[size];
-    atob(n, s, 16);
+    atob(n, s, b);
     printf("%s\n", s);
     return 0;
 }
@@ -23,6 +23,9 @@ void atob(int n, char s[], int b)
     i = 0;
     sign = n;
     char symbols[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    /* handle the errors no base < 2, no base > symbols length */
+    if (b < 2 || b > strlen(symbols))
+        return;
     if (n < 0)
         n = -n;
     /* convert to hex */
@@ -44,7 +47,6 @@ void reverse(char s[])
 {
     int i, j;
     char temp;
-    printf("%i\n", strlen(s));
     for (i = 0, j = strlen(s) - 1; i <= j; i++, j--)
     {
         temp = s[i];
