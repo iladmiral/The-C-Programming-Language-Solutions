@@ -7,10 +7,11 @@ void reverse(char s[]);
 
 int main(void) 
 {
-    int n = 20;
+    int n = -20;
+    int width = 10;
     int size = sizeof(n) / sizeof(int);
     char s[size];
-    atoa(n, s, 10);
+    atoa(n, s, width);
     printf("%s\n", s);
     return 0;
 }
@@ -28,18 +29,13 @@ void atoa(int n, char s[], int w)
     i = 0;
     do                      /* generate the degit in inverse order */
     {   
-        if (num > 0)
-        {
-            s[i++] = num % 10 + '0';  /* get the next degit */
-        }
-        else        /* add blank spaces to reach the condition */
-        {
-            s[i++] = ' ';
-        }
+        s[i++] = num % 10 + '0';  /* get the next degit */
     } 
-    while ((num = num / 10) > 0 || i < w); /* delete it and wait until the length of s = width*/
+    while ((num = num / 10)); /* delete it and wait until the length of s = width*/
     if (sign < 0)
         s[i++] = '-';
+    while (i < w) /* add blank spaces to reach the condition */ 
+        s[i++] = ' ';
     s[i] = '\0';
     reverse(s);
 }
