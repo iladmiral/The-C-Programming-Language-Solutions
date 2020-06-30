@@ -16,7 +16,7 @@ int main(void)
     return 0;
 }
 
-/* atob : covert integer to an string */
+/* atob : convert integer to hex than save it in string */
 void atob(int n, char s[], int b)
 {
     int sign, i;

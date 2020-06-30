@@ -2,33 +2,42 @@
 #include <ctype.h>
 #include <string.h>
 
-void atoa(int n, char s[]);
+void atoa(int n, char s[], int w);
 void reverse(char s[]);
 
 int main(void) 
 {
-    int n = -2147483648;
+    int n = 20;
     int size = sizeof(n) / sizeof(int);
     char s[size];
-    atoa(n, s);
+    atoa(n, s, 10);
     printf("%s\n", s);
     return 0;
 }
 
-/* atoa : convert integer to an string */
-void atoa(int n, char s[])
+/* atoa : convert integer to an string with a minimum with w */
+void atoa(int n, char s[], int w)
 {
     int sign, i;
     unsigned int num;
     if ((sign = n) < 0)     /* record sign */
-        num = -n;             /* make n positive */
+        num = -n;           /* make n positive */
+    else                    
+        num = n;
     
     i = 0;
     do                      /* generate the degit in inverse order */
-    {
-        s[i++] = num % 10 + '0';  /* get the next degit */
+    {   
+        if (num > 0)
+        {
+            s[i++] = num % 10 + '0';  /* get the next degit */
+        }
+        else        /* add blank spaces to reach the condition */
+        {
+            s[i++] = ' ';
+        }
     } 
-    while ((num = num / 10) > 0); /* delete it */
+    while ((num = num / 10) > 0 || i < w); /* delete it and wait until the length of s = width*/
     if (sign < 0)
         s[i++] = '-';
     s[i] = '\0';
