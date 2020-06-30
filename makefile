@@ -2,7 +2,7 @@
 CXX := g++
 
 #Sources code
-CODE_SOURCE := atoa.c
+CODE_SOURCE := atob.c
 
 #-O is the optimization level
 #levels 0 - 1 - 2 - 3 - s(size) - g (debugging) - fast
