@@ -15,3 +15,11 @@ convert string to long integer
 
 /// comma ,
 could be used for the exchange of elements
+
+/// contine
+apply only in the loops, not switch
+while ()
+    switch ()
+    {
+        contine; -> causes the next loop iteration
+    };
