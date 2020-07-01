@@ -23,3 +23,6 @@ while ()
     {
         contine; -> causes the next loop iteration
     };
+/// function argument
+if function take arguments declare them
+if function takes no argument use void
