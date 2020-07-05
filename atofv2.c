@@ -6,7 +6,7 @@ double atof(char s[]);
 
 int main(void)
 {
-    char s[] = "123.45e6";
+    char s[] = "123.45E6";
     printf("%f\n", atof(s));
     return 0;
 }
