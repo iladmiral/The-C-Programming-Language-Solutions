@@ -35,13 +35,9 @@ int main(void)
             case '/':
                 op2 = pop();
                 if (op2 != 0.0)
-                {
                     push(pop() / op2);
-                }
                 else
-                {
                     printf("error: zero divisor\n");
-                }
                 break;
             case '\n':
                 printf("\t%.8g\n", pop());
@@ -54,6 +50,33 @@ int main(void)
     return 0;
 }
 
+#define MAXVAL 100 /* maximum depth of val stack */
+
+int sp = 0;     /* next free stack position */
+double val[MAXVAL]; /* value stack */
+
+/* push: push f into value stack */
+void push(double f)
+{
+    if (sp < MAXVAL)
+        val[sp++] = f;
+    else
+        printf("error: stack full, can't push %g\n", f);
+}
+
+/* pop: pop and return the top value of stack */
+double pop(void)
+{
+    if (sp > 0)
+        return val[--sp];
+    else
+    {
+        printf("error: stack is empty\n");
+        return 0.0;
+    }
+}
+
+
 #include <ctype.h>
 
 int getch(void);
@@ -63,9 +86,9 @@ void ungetch(int);
 int getop(char s[])
 {
     int i, c;
-    while ((s[0] = c = getch()) == ' ' || s[0] == '\t');   /* wait utile get caracter */
+    while ((s[0] = c = getch()) == ' ' || c == '\t');   /* wait utile get caracter */
     s[1] = '\0';
-    if (!isdigit(c) || c != '.')
+    if (!isdigit(c) && c != '.')
         return c; /* not number */
     i = 0;
     if (isdigit(c)) /* collect integer part */
