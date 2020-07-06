@@ -53,3 +53,45 @@ int main(void)
     }
     return 0;
 }
+
+#include <ctype.h>
+
+int getch(void);
+void ungetch(int);
+
+/* getop: get the next caracter or numeric oprend */
+int getop(char s[])
+{
+    int i, c;
+    while ((s[0] = c = getch()) == ' ' || s[0] == '\t');   /* wait utile get caracter */
+    s[1] = '\0';
+    if (!isdigit(c) || c != '.')
+        return c; /* not number */
+    i = 0;
+    if (isdigit(c)) /* collect integer part */
+        while (isdigit(s[++i] = c = getch()));
+    if (s[i] == '.') /* collect the fraction part */
+        while (isdigit(s[++i] = c = getch()));
+    s[i] = '\0';
+    if (c != EOF)
+        ungetch(c);
+    return NUMBER;
+}
+
+#define BUFSIZE 100
+
+char buf[BUFSIZE]; /* buffer for ungetch */
+int bufp = 0; /* next free position in buf */
+
+int getch() /* get a (possibly pushed-back) character  */
+{
+    return (bufp > 0) ? buf[--bufp] : getchar();
+}
+
+void ungetch(int c) /* push character back on input */
+{
+    if (bufp >= BUFSIZE)
+        printf("erorr: too many character\n");
+    else
+        buf[bufp++] = c;
+}
