@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
+#include <math.h>
 
 #define MAXOP 100 /* max size of oprend or oprator */
 #define NUMBER '0' /* signal that the number was found */
@@ -36,6 +37,13 @@ int main(void)
                 op2 = pop();
                 if (op2 != 0.0)
                     push(pop() / op2);
+                else
+                    printf("error: zero divisor\n");
+                break;
+            case '%':
+                op2 = pop();
+                if (op2 != 0.0)
+                    push(fmod(pop(), op2));
                 else
                     printf("error: zero divisor\n");
                 break;
