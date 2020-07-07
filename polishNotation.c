@@ -8,6 +8,8 @@
 int getop(char []);
 void push(double);
 double pop(void);
+void showTop(void);
+void swap(void);
 
 /* reverse Polish calculator */
 int main(void)
@@ -25,6 +27,7 @@ int main(void)
                 break;
             case '+':
                 push(pop() + pop());
+                swap();
                 break;
             case '*':
                 push(pop() * pop());
@@ -84,6 +87,29 @@ double pop(void)
     }
 }
 
+/* showTop: print the element in the top of stack */
+void showTop(void)
+{
+    if (sp > 0)
+        printf("%lf\n", val[sp-1]);
+    else
+        printf("error: the stack is empty\n");
+}
+
+/* swap: swap the top two elements */
+void swap(void)
+{
+    if (sp > 2)
+    {
+        double temp = val[sp-1];
+        val[sp-1] = val[sp-2];
+        val[sp-2] = temp;
+    }
+    else
+    {
+        printf("error: stack is empty, nothing to swap\n");
+    }
+}
 
 #include <ctype.h>
 
