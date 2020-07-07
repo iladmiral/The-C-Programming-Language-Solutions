@@ -27,12 +27,12 @@ int main(void)
                 break;
             case '+':
                 push(pop() + pop());
-                swap();
                 break;
             case '*':
                 push(pop() * pop());
                 break;
             case '-':
+                swap();
                 op2 = pop();
                 push(pop() - op2);
                 break;
@@ -99,11 +99,12 @@ void showTop(void)
 /* swap: swap the top two elements */
 void swap(void)
 {
-    if (sp > 2)
+    if (sp > 0)
     {
-        double temp = val[sp-1];
-        val[sp-1] = val[sp-2];
-        val[sp-2] = temp;
+        double temp1 = pop();
+        double temp2 = pop();
+        push(temp1);
+        push(temp2);
     }
     else
     {
