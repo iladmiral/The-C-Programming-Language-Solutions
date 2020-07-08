@@ -11,6 +11,7 @@ double pop(void);
 void showTop(void);
 void swap(void);
 void duplicate(void);
+void clear(void);
 
 /* reverse Polish calculator */
 int main(void)
@@ -27,7 +28,7 @@ int main(void)
                 push(atof(s));
                 break;
             case '+':
-                duplicate();
+                clear();
                 push(pop() + pop());
                 break;
             case '*':
@@ -117,6 +118,13 @@ void swap(void)
 void duplicate(void)
 {
     push(val[sp-1]);
+}
+
+/* clear: to clear the stack */
+void clear(void)
+{
+    if (sp > 0)
+        sp = -1;
 }
 
 #include <ctype.h>
