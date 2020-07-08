@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
-#include <string.h>
 #include <math.h>
 
 #define MAXOP 100 /* max size of oprend or oprator */
@@ -9,7 +8,10 @@
 int getop(char []);
 void push(double);
 double pop(void);
-
+void showTop(void);
+void swap(void);
+void duplicate(void);
+void clear(void);
 
 /* reverse Polish calculator */
 int main(void)
@@ -26,12 +28,14 @@ int main(void)
                 push(atof(s));
                 break;
             case '+':
+                clear();
                 push(pop() + pop());
                 break;
             case '*':
                 push(pop() * pop());
                 break;
             case '-':
+                swap();
                 op2 = pop();
                 push(pop() - op2);
                 break;
@@ -39,6 +43,13 @@ int main(void)
                 op2 = pop();
                 if (op2 != 0.0)
                     push(pop() / op2);
+                else
+                    printf("error: zero divisor\n");
+                break;
+            case '%':
+                op2 = pop();
+                if (op2 != 0.0)
+                    push(fmod(pop(), op2));
                 else
                     printf("error: zero divisor\n");
                 break;
@@ -77,6 +88,43 @@ double pop(void)
         printf("error: stack is empty\n");
         return 0.0;
     }
+}
+
+/* showTop: print the element in the top of stack */
+void showTop(void)
+{
+    if (sp > 0)
+        printf("%lf\n", val[sp-1]);
+    else
+        printf("error: the stack is empty\n");
+}
+
+/* swap: swap the top two elements */
+void swap(void)
+{
+    if (sp > 0)
+    {
+        double temp1 = pop();
+        double temp2 = pop();
+        push(temp1);
+        push(temp2);
+    }
+    else
+    {
+        printf("error: stack is empty, nothing to swap\n");
+    }
+}
+/* duplicate: to duplicate the top element of the stack */
+void duplicate(void)
+{
+    push(val[sp-1]);
+}
+
+/* clear: to clear the stack */
+void clear(void)
+{
+    if (sp > 0)
+        sp = -1;
 }
 
 #include <ctype.h>

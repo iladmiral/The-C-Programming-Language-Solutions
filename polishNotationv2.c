@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
-#include <string.h>
-#include <math.h>
+#include <string.h> /* strcmp */
+#include <math.h> /* sin, cos, exp & pow */
 
 #define MAXOP 100 /* max size of oprend or oprator */
 #define NUMBER '0' /* signal that the number was found */
+#define FUNCTION '1' /* signal that a math funtion is found */
 
 int getop(char []);
 void push(double);
 double pop(void);
-
+void domath(char s[]);
 
 /* reverse Polish calculator */
 int main(void)
@@ -22,6 +23,9 @@ int main(void)
     {
         switch (type)
         {
+            case FUNCTION:
+                domath(s);
+                break;
             case NUMBER:
                 push(atof(s));
                 break;
@@ -79,6 +83,25 @@ double pop(void)
     }
 }
 
+/* domath: access to various math functions as sin, cos, exp & pow */
+void domath(char s[])
+{
+    double op2;
+    if (strcmp(s, "sin") == 0)
+        push(sin(pop()));
+    else if (strcmp(s, "cos") == 0)
+        push(cos(pop()));
+    else if (strcmp(s, "exp") == 0)
+        push(exp(pop()));
+    else if (strcmp(s, "pow") == 0)
+    {
+        op2 = pop();
+        push(pow(pop(), op2));
+    }
+    else
+        printf("error: unknown funtion\n");
+}
+
 #include <ctype.h>
 
 int getch(void);
@@ -90,6 +113,15 @@ int getop(char s[])
     int i, c;
     while ((s[0] = c = getch()) == ' ' || c == '\t');   /* wait utile get caracter */
     s[1] = '\0';
+    i = 0;
+    if (isalpha(c))
+    {
+        while (isalpha(s[++i] = c = getch()));
+        s[i] = '\0';
+        if (c != EOF)
+            ungetch(c);
+        return FUNCTION;
+    }
     if (!isdigit(c) && c != '.')
         return c; /* not number */
     i = 0;

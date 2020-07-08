@@ -2,7 +2,7 @@
 CXX := g++
 
 #Sources code
-CODE_SOURCE := polishNotation.c
+CODE_SOURCE := polishNotationv2.c
 
 #-O is the optimization level
 #levels 0 - 1 - 2 - 3 - s(size) - g (debugging) - fast
