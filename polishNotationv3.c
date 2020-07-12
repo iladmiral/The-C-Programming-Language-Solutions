@@ -4,6 +4,7 @@
 
 #define MAXOP 100 /* max size of oprend or oprator */
 #define NUMBER '0' /* signal that the number was found */
+#define BUFSIZE 100
 
 int getop(char []);
 void push(double);
@@ -98,24 +99,19 @@ int getop(char s[])
         while (isdigit(s[++i] = c = getch()));
     s[i] = '\0';
     if (c != EOF)
-        ungetch(c);
+    {
+        if (bufp >= BUFSIZE)
+            printf("erorr: too many character\n");
+        else
+            buf[bufp++] = c;
+    }
     return NUMBER;
 }
 
-#define BUFSIZE 100
-
-char buf[BUFSIZE]; /* buffer for ungetch */
-int bufp = 0; /* next free position in buf */
+static char buf[BUFSIZE]; /* buffer for ungetch */
+static int bufp = 0; /* next free position in buf */
 
 int getch() /* get a (possibly pushed-back) character  */
 {
     return (bufp > 0) ? buf[--bufp] : getchar();
-}
-
-void ungetch(int c) /* push character back on input */
-{
-    if (bufp >= BUFSIZE)
-        printf("erorr: too many character\n");
-    else
-        buf[bufp++] = c;
 }

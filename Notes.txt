@@ -21,8 +21,14 @@ apply only in the loops, not switch
 while ()
     switch ()
     {
-        contine; -> causes the next loop iteration
+        continue; -> causes the next loop iteration
     };
+
 /// function argument
 if function take arguments declare them
 if function takes no argument use void
+
+/// external variable
+if the variable is to be referred before i's declaration, if it is
+defined in a different source file from the one where it is being used
+then extern declaration is mandatory
