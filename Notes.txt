@@ -32,3 +32,20 @@ if function takes no argument use void
 if the variable is to be referred before i's declaration, if it is
 defined in a different source file from the one where it is being used
 then extern declaration is mandatory
+
+/// static variable
+allocate a fix storage in RAM to static variable,
+data can't lose when the function funish.
+
+/// register variable
+advise the compiler that the variable is heavily used.
+the register variable are to be placed in register machine.
+may resut in smaller and faster program.
+note that compilers are free to ignore the advice.
+
+/// initialization
+absence of explicit initialization.
+static & extern are initialiezed to 0
+automatic & register variables have undefined (i.e., garbage) initial values.
+
+

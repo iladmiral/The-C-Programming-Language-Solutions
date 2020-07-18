@@ -98,6 +98,8 @@ int getop(char s[])
     if (s[i] == '.') /* collect the fraction part */
         while (isdigit(s[++i] = c = getch()));
     s[i] = '\0';
+    static buf;
+    static bufp;
     if (c != EOF)
     {
         if (bufp >= BUFSIZE)
@@ -108,8 +110,8 @@ int getop(char s[])
     return NUMBER;
 }
 
-static char buf[BUFSIZE]; /* buffer for ungetch */
-static int bufp = 0; /* next free position in buf */
+char buf[BUFSIZE]; /* buffer for ungetch */
+int bufp = 0; /* next free position in buf */
 
 int getch() /* get a (possibly pushed-back) character  */
 {

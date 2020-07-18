@@ -2,7 +2,7 @@
 CXX := g++
 
 #Sources code
-CODE_SOURCE := polishNotationv3.c
+CODE_SOURCE := atoav3.c
 
 
 #-O is the optimization level
