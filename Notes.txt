@@ -48,4 +48,9 @@ absence of explicit initialization.
 static & extern are initialiezed to 0
 automatic & register variables have undefined (i.e., garbage) initial values.
 
+/// pointer incrementation
+(*ip)++ -> *ip = *ip + 1; The () are necessary.
+
+
+
 
