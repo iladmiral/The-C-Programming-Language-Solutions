@@ -39,7 +39,7 @@ int getint(int *pn)
     {
         getch();
     }
-    for (*pn = 0; isdigit(c), c = getch(); )
+    for (*pn = 0; isdigit(c); c = getch())
         *pn = 10 * *pn + (c - '0');
     *pn *= sign;
     if (c != EOF)
