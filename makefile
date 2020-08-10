@@ -2,7 +2,7 @@
 CXX := g++
 
 #Sources code
-CODE_SOURCE := chapter-4/4-13-reverse.c
+CODE_SOURCE := chapter-5/getint.c
 
 
 #-O is the optimization level
