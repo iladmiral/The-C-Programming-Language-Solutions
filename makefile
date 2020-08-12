@@ -3,7 +3,9 @@ CXX := g++
 
 #Sources code
 CODE_SOURCE := chapter-5/getint.c
-
+#CODE_SOURCE := 5-1/main.c
+#CODE_SOURCE += 5-1/getint.c
+#CODE_SOURCE += 5-1/getch.c
 
 #-O is the optimization level
 #levels 0 - 1 - 2 - 3 - s(size) - g (debugging) - fast
