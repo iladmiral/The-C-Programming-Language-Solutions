@@ -13,6 +13,10 @@ int main(void)
     int n, array[SIZE], getint(int *);
     for (n = 0; n < SIZE && getint(&array[n]) != EOF; n++)
     ;
+    for (int j = 0; j < 4; j++)
+    {
+        printf("%i\n", array[j]);
+    }
     return 0;
 }
 
@@ -35,6 +39,12 @@ int getint(int *pn)
     if (c == '-' || c == '+')
     {
         c = getch();
+        if (!isdigit(c))
+        {
+            ungetch(c);
+            ungetch(sign == 1 ? '+' : '-');
+            return 0;
+        }
     }
     for (*pn = 0; isdigit(c); c = getch())
     {
